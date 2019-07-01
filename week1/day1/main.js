@@ -1,3 +1,4 @@
+var index;
 var myStr = 'this is a string';
 
 myStr = 234;
@@ -8,11 +9,13 @@ var array = ['dog', 'cat', 'fish'];
 
 console.log(array.push(myStr));
 
-console.log(array);
+console.log('index before ' , index);
 
-// for (var index = 0; index < array.length; index++) {
-//   console.log('index is ' + index, array[index]);
-// }
+for (let index = 0; index < array.length; index++) {
+  console.log('index is ' + index, array[index]);
+}
+
+console.log('index after' ,index);
 
 // for (var index in array) {
 //   console.log('index is ' + index, array[index]);
@@ -47,13 +50,42 @@ var person = {
 // }
 
 
-function sayHello(name) {
+function sayHello(name, ...rest) {
+  console.log(rest);
   var thing = 'this is aa thing';
   // person.name = name;
-  console.log('Hello ' + person.name);
+  console.log('Hello ' + name);
 }
 
-sayHello('Jason');
+sayHello('Jason', true, 'cat', 1234123);
 // console.log(person);
 
 // console.log(thing);
+
+
+
+function counter(incrBy) {
+  let count = 0;
+
+  function childScope() {
+    count = count + incrBy
+    return count;
+  }
+
+  return childScope;
+}
+var countByThree = counter(3);
+var countByTwo = counter(2);
+console.log(countByThree());
+// 1
+console.log(countByThree());
+// 2
+console.log(countByThree());
+console.log(countByThree());
+// 3
+console.log(countByTwo());
+console.log(countByTwo());
+console.log(countByTwo());
+console.log(countByTwo());
+// 4
+// 5
