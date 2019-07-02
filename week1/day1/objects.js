@@ -1,51 +1,103 @@
 // 'use strict';
 
-function Person(name, items) {
-  if (!(this instanceof Person)) {
-    console.log(`${name} is NOT a person`);
-    return new Person(name, items);
-  } 
-  const person = { name };
+class Person {
+  // private String name;
 
-  this.name = name;
-  console.log(this);
-  this.items = items;
-  // this.take = take;
-
-
-  // return this;
-  // return person;
-}
-
-Person.prototype.take = function take(item, target) {
-  if (!target || !Array.isArray(target.items)) {
-    // console.log('target does not have an items array');
-    throw new Error('target must have an items array');
+  constructor(name, items) {
+    this._name = name;
+    this.items = items;
   }
 
-  console.log('this is --------->', this);
-
-  for (let index = 0; index < target.items.length; index++) {
-    if (item === target.items[index]) {
-      // console.log(target.items.pop());
-      // splice -- mutates array
-      // slice -- makes a copy of values
-      // console.log(target.items.slice(index, index +1));
-      target.items.splice(index, 1)
-      this.items.push(item);
-      // console.log('content at index', index, target.items[index]);
-      // console.log(target.items);
-
-      return true;
+  take(item, target) {
+    if (!target || !Array.isArray(target.items)) {
+      // console.log('target does not have an items array');
+      throw new Error('target must have an items array');
     }
+  
+    console.log('this is --------->', this);
+  
+    for (let index = 0; index < target.items.length; index++) {
+      if (item === target.items[index]) {
+        // console.log(target.items.pop());
+        // splice -- mutates array
+        // slice -- makes a copy of values
+        // console.log(target.items.slice(index, index +1));
+        target.items.splice(index, 1)
+        this.items.push(item);
+        // console.log('content at index', index, target.items[index]);
+        // console.log(target.items);
+  
+        return true;
+      }
+    }
+  
+    return false;
   }
 
-  return false;
+
+  get name() {
+    return this._name;
+  }
+
+  set name(name) {
+    if (name.length < 5) {
+      throw new Error(`Name ${name} is not long enough`);
+    }
+
+    this._name = name;
+  }
 }
 
 
-const bob = Person('Bob', ['phone', 'keys', 'sand']);
+
+// function Person(name, items) {
+//   if (!(this instanceof Person)) {
+//     console.log(`${name} is NOT a person`);
+//     return new Person(name, items);
+//   } 
+//   const person = { name };
+
+//   this.name = name;
+//   console.log(this);
+//   this.items = items;
+//   // this.take = take;
+
+
+//   // return this;
+//   // return person;
+// }
+
+// Person.prototype.take = function take(item, target) {
+//   if (!target || !Array.isArray(target.items)) {
+//     // console.log('target does not have an items array');
+//     throw new Error('target must have an items array');
+//   }
+
+//   console.log('this is --------->', this);
+
+//   for (let index = 0; index < target.items.length; index++) {
+//     if (item === target.items[index]) {
+//       // console.log(target.items.pop());
+//       // splice -- mutates array
+//       // slice -- makes a copy of values
+//       // console.log(target.items.slice(index, index +1));
+//       target.items.splice(index, 1)
+//       this.items.push(item);
+//       // console.log('content at index', index, target.items[index]);
+//       // console.log(target.items);
+
+//       return true;
+//     }
+//   }
+
+//   return false;
+// }
+
+
+const bob = new Person('Bob', ['phone', 'keys', 'sand']);
 const sally = new Person('Sally', ['fish', 'gold', 'watch']);
+
+
 
 
 // sally.take()
@@ -57,8 +109,8 @@ const sally = new Person('Sally', ['fish', 'gold', 'watch']);
 
 //   return Person;
 // })();
-
-console.log(bob);
+bob.name = 'Hal';
+console.log(bob.name);
 
 
 
