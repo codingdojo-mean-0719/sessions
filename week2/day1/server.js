@@ -23,6 +23,7 @@ app.use(function (request, response, next) {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger);
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 function isLoggedIn(request, response, next) {
@@ -37,6 +38,8 @@ function isLoggedIn(request, response, next) {
 
 app.get('/', function (request, response) {
   // console.log(request);
+
+  console.log('got to index');
 
   response.render('index');
 });
