@@ -7,9 +7,12 @@ import { AppComponent } from './app.component';
 
 import * as fromBooks from './books';
 
+import { AppRoutingModule } from './app-routing.module';
+import { NavComponent } from './nav/nav.component';
+
 @NgModule({
-  declarations: [AppComponent, ...fromBooks.components],
-  imports: [BrowserModule, FormsModule, HttpClientModule],
+  declarations: [AppComponent, ...fromBooks.components, NavComponent],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
