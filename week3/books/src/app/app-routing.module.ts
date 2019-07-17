@@ -3,23 +3,45 @@ import { NgModule } from '@angular/core';
 
 import * as fromBooks from './books';
 
+import { environment } from '../environments/environment';
+
+const enableTracing = false && !environment.production;
+
 const routes: Routes = [
   {
     path: '',
-    component: fromBooks.BookListComponent,
+    redirectTo: 'books',
+    pathMatch: 'full',
   },
   {
-    path: 'books/new',
-    component: fromBooks.BookNewComponent,
-  },
-  {
-    path: 'books/:bookId',
-    component: fromBooks.BookDetailComponent,
+    path: 'books',
+    children: [
+      {
+        path: '',
+        component: fromBooks.BookListComponent,
+      },
+      {
+        path: 'new',
+        component: fromBooks.BookNewComponent,
+      },
+      {
+        path: ':bookId',
+        component: fromBooks.BookDetailComponent,
+      },
+      {
+        path: ':bookId/edit',
+        component: fromBooks.BookEditComponent,
+      },
+    ],
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      enableTracing,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -1,0 +1,36 @@
+<section>
+  <fieldset>
+    <legend>Edit Book</legend>
+
+    {{ bookForm.value | json }}
+    <form
+      autocomplete="off"
+      (submit)="onSubmit($event, bookForm)"
+      #bookForm="ngForm"
+    >
+      <input type="hidden" name="id" [ngModel]="book?.id" />
+      <div>
+        <label for="">title</label>
+        <input type="text" name="title" [ngModel]="book?.title" required />
+      </div>
+      <div>
+        <label for="">author</label>
+        <input type="text" name="author" [ngModel]="book?.author" />
+      </div>
+      <div>
+        <label for="">year</label>
+        <input type="text" name="year" [ngModel]="book?.year" />
+      </div>
+      <div>
+        <label for="">pages</label>
+        <input type="text" name="pages" [ngModel]="book?.pages" />
+      </div>
+      <div>
+        <label for="">publisher</label>
+        <input type="text" name="publisher" [ngModel]="book?.publisher" />
+      </div>
+
+      <button *ngIf="bookForm.valid">Update</button>
+    </form>
+  </fieldset>
+</section>
