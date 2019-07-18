@@ -8,3 +8,8 @@ const catchAll = require('./catch-all.route');
 router.use('/auth', authRouter).use('/books', bookRouter);
 
 module.exports = apiRouter.use('/api', router).use(catchAll);
+
+
+// /api/auth/login
+
+// /api/books

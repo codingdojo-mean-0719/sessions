@@ -40,7 +40,7 @@ const UserSchema = new Schema(
 
 UserSchema.plugin(uniqueValidator, { message: '{PATH} must be unique' });
 
-UserSchema.pre('validate', function(next) {
+UserSchema.pre('validate', function (next) {
   if (!this.isModified('password')) {
     return next();
   }
@@ -54,7 +54,7 @@ UserSchema.pre('validate', function(next) {
     .catch(next);
 });
 
-UserSchema.statics.validatePassword = function(
+UserSchema.statics.validatePassword = function (
   candidatePassword,
   hashedPassword
 ) {
