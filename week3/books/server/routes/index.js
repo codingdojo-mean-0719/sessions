@@ -1,5 +1,10 @@
 const router = require('express').Router();
+const apiRouter = require('express').Router();
 
+const authRouter = require('./auth.route');
 const bookRouter = require('./book.route');
+const catchAll = require('./catch-all.route');
 
-module.exports = router.use('/books', bookRouter);
+router.use('/auth', authRouter).use('/books', bookRouter);
+
+module.exports = apiRouter.use('/api', router).use(catchAll);
